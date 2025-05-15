@@ -37,7 +37,7 @@
     color: rgba(255, 255, 255, 0.74);
 }
 
-.header .active{
+.header .active::after{
     content: "";
     position: absolute;
     bottom: -4px;
