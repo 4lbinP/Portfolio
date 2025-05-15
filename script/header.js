@@ -1,4 +1,4 @@
-fetch('/templates/header.html.txt')
+fetch('/templates/header.txt')
     .then(response => response.text())
     .then(data => {
         document.getElementById('header').innerHTML = data;
