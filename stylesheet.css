@@ -1,0 +1,15 @@
+.header{
+    padding: 10px;
+    display: flex;
+    
+
+}
+ul{
+    flex-direction: row;
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    color: black;
+    list-style-type: none;
+}
+
