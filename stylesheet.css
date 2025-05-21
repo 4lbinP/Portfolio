@@ -1,0 +1,4 @@
+body {
+    background: linear-gradient(135deg, oklch(20.8% 0.042 265.755), oklch(55.4% 0.042 265.755) 100%, oklch(55.4% 0.042 265.755));
+    background-attachment: fixed;
+}
