@@ -1,4 +1,4 @@
-
+import { gsap } from "https://esm.sh/gsap@3.13.0"
 
 
 let tl = gsap.timeline({
