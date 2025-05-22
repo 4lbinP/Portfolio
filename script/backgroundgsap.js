@@ -1,9 +1,8 @@
 import { gsap } from "https://esm.sh/gsap@3.13.0"
 
-let bright = "hsl(221.19 15% 48%)";
-let dark = "hsl(222.34 49% 11%)";
+let bright = "rgb(100, 116, 139)";
+let dark = "rgb(15, 23, 42)";
 
-// ${dark}
 
 
 let tl = gsap.timeline({
