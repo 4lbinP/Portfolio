@@ -1,26 +1,31 @@
 import { gsap } from "https://esm.sh/gsap@3.13.0"
 
+let bright = "hsl(221.19 15% 48%)";
+let dark = "hsl(222.34 49% 11%)";
+
+// ${dark}
+
 
 let tl = gsap.timeline({
     repeat: -1,
 })
 
-tl.fromTo("body", 
+tl.fromTo("#bg", 
     {
-        background: "linear-gradient(135deg, oklch(20.8% 0.042 265.755), oklch(55.4% 0.042 265.755) 100%, oklch(55.4% 0.042 265.755))"
+        background: `linear-gradient(135deg, ${dark}, ${bright} 100%, ${bright})`
     },
     {
         duration: 5,
-        background: "linear-gradient(135deg, oklch(55.4% 0.042 265.755), oklch(55.4% 0.042 265.755) 0%, oklch(20.8% 0.042 265.755))",
+        background: `linear-gradient(135deg, ${bright}, ${bright} 0%, ${dark})`,
         ease: "none",
     })
-.fromTo("body",
+.fromTo("#bg",
     {
-        background: "linear-gradient(135deg, oklch(55.4% 0.042 265.755), oklch(20.8% 0.042 265.755) 100%, oklch(20.8% 0.042 265.755))",
+        background: `linear-gradient(135deg, ${bright}, ${dark} 100%, ${dark})`,
     },
     {
         duration: 5,
-        background: "linear-gradient(135deg, oklch(20.8% 0.042 265.755), oklch(20.8% 0.042 265.755) 0%, oklch(55.4% 0.042 265.755))",
+        background: `linear-gradient(135deg, ${dark}, ${dark} 0%, ${bright})`,
         ease: "none",
     })
 
