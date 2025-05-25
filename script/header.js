@@ -1,7 +1,7 @@
 fetch('/Portfolio/templates/header.html')
   .then(response => response.text())
   .then(data => {
-    document.getElementById('header').innerHTML = data;
+    document.querySelector('header').innerHTML = data;
 
     const currentPath = window.location.pathname;
     
