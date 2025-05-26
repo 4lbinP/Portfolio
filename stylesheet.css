@@ -14,16 +14,40 @@ body {
 }
 
 main {
-    margin-top: 5rem;
-    width: 80%;
+    margin-top: 0rem;
+    width: 90%;
 }
 
 #welcome {
     text-align: center;
     font-weight: 600;
-    font-size: 4rem;
+    font-size: 8rem;
     padding-top: 2rem;
     border-top: solid rgb(233, 205, 255);
     color: aliceblue;
-    
+    font-family: "Josefin Sans", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+    margin: 0;
+    margin-top: 80;
+    margin-bottom: 30;
+}
+
+#bubbelPop {
+    background: hsla(205, 44%, 54%, 0.2);
+    border: black solid;
+    border-radius: 1rem;
+    width: 100%;
+    margin: 0;
+    position: relative;
+}
+
+.bubble {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(173, 216, 230, 0.7);
+    border: 2px solid white;
+    cursor: pointer;
 }
