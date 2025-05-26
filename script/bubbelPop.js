@@ -1,14 +1,17 @@
-import { gsap } from "https://esm.sh/gsap@3.13.0"
+import { gsap } from "https://esm.sh/gsap@3.13.0";
 
 const bubbelPop = document.getElementById("bubbelPop");
-const remainingHeight = window.innerHeight - bubbelPop.getBoundingClientRect().top
+const remainingHeight = window.innerHeight - bubbelPop.getBoundingClientRect().top;
 
 bubbelPop.style.height = `${remainingHeight - 50}px`;
 const containerRect = bubbelPop.getBoundingClientRect();
 
-function createFirstBubbles() {
-    const bubble = document.createElement('div');
+const pictures = ["newCap.jpg"];
+
+function createBubble(progress) {
+    const bubble = document.createElement('img');
     bubble.classList.add('bubble');
+    bubble.src = "/Portfolio/pictures/bubble.webp";
     
     const size = 70 + Math.random() * 70;
   
@@ -16,41 +19,19 @@ function createFirstBubbles() {
     bubble.style.height = `${size}px`;
 
     const startLeft = 30 + Math.random() * (containerRect.width - size - 60);
-    const startTop = containerRect.height - 2 * size;
+    const startTop = containerRect.height;
 
     bubble.style.left = `${startLeft}px`;
     bubble.style.top = `${startTop}px`;
   
     bubbelPop.appendChild(bubble);
   
-    animateBubble(bubble, Math.random());
-    bubble.addEventListener('click', () => popBubble(bubble));
-}
-
-function createBubble() {
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
-    
-    const size = 70 + Math.random() * 70;
-  
-    bubble.style.width = `${size}px`;
-    bubble.style.height = `${size}px`;
-
-    const startLeft = 30 + Math.random() * (containerRect.width - size - 60);
-    const startTop = containerRect.height - 2 * size;
-
-    bubble.style.left = `${startLeft}px`;
-    bubble.style.top = `${startTop}px`;
-  
-    bubbelPop.appendChild(bubble);
-  
-    animateBubble(bubble, 0);
-    bubble.addEventListener('click', () => popBubble(bubble));
-}
+    animateBubble(bubble, progress);
+    bubble.addEventListener('click', () => popBubble(bubble, true));
+};
   
 function animateBubble(bubble, progress) {
-    const size = parseFloat(bubble.style.width);
-    const duration = 15 + Math.random() * 15
+    const duration = 15 + Math.random() * 15;
 
     gsap.fromTo(bubble, {
         opacity: 0
@@ -60,16 +41,16 @@ function animateBubble(bubble, progress) {
         ease: "none"
     });
 
-    const bubbleTl = gsap.timeline()
+    const bubbleTl = gsap.timeline();
     
     bubbleTl.to(bubble, {
         duration: duration,
         top: -3,
-        onComplete: () => popBubble(bubble),
+        onComplete: () => popBubble(bubble, false),
         ease: "none"
-    })
+    });
 
-    bubbleTl.progress(progress)
+    bubbleTl.progress(progress);
 
     gsap.to(bubble, {
         scale: 1.1,
@@ -86,32 +67,85 @@ function animateBubble(bubble, progress) {
         repeatRefresh: true,
         ease: "power1.inOut"
     });
-}
+};
 
 function sideMovement(bubble){
     let pos = parseFloat(bubble.style.left) + (0.5 - Math.random()) * 200
     const size = parseFloat(bubble.style.width);
 
     if (pos < 10){
-        return 10
+        return 10;
     }
     else if (pos > containerRect.width - size - 20){
-        return containerRect.width - size - 20
-    }
-    return pos
-}
+        return containerRect.width - size - 20;
+    };
+    return pos;
+};
 
 
 
-function popBubble(bubble) {
-    gsap.to(bubble, {
+function popBubble(bubble, manualPop) {
+    if (bubble.dataset.popped === "true") return;
+    bubble.dataset.popped = "true";
+
+    gsap.killTweensOf(bubble);
+
+    const popTl = gsap.timeline({
+        onComplete: () => popOrPicture(bubble, manualPop)
+    });
+
+    popTl.to(bubble, {
+        scale: 1.25,
+        duration: 0.03
+    })
+    .to(bubble, {
         scale: 0,
         opacity: 0,
-        duration: 0.3,
-        onComplete: () => {bubble.remove(), createBubble()}
+        duration: 0.09,
     });
-}
 
-for (let i = 0; i < 20; i++) {
-    createFirstBubbles();
-}
+    function popOrPicture(bubble, manualPop){
+        if (Math.random() > 0.8 && manualPop){
+            const size = parseFloat(bubble.style.width);
+            bubble.style.borderRadius = 0;
+            bubble.style.zIndex = 1
+            bubble.src = "/Portfolio/pictures/me/" + pictures[Math.floor(Math.random()) * pictures.length];
+
+            bubble.onload = () => {
+                bubble.style.width = bubble.naturalWidth
+                bubble.style.height = bubble.naturalHeight
+                
+                gsap.timeline({
+                    onComplete: () => {bubble.remove(), createBubble(0)}
+                }).to(bubble, {
+                    top: (containerRect.height - parseFloat(bubble.style.height)) / 2,
+                    left: (containerRect.width - parseFloat(bubble.style.width)) / 2,
+                    duration: 2,
+                    scale: () => scale(bubble),
+                    opacity: 1
+                }).to(bubble, {
+                    duration: 2,
+                    opacity: 0,
+                    delay: 5,
+                    ease: "power3.in"
+                });
+            };
+        } else {
+            bubble.remove();
+            createBubble(0);
+        };
+    };
+};
+
+function scale(bubble) {
+    const bubbleHeight = parseFloat(bubble.style.height)
+    const bubbleWidht = parseFloat(bubble.style.width)
+    if (containerRect.height / bubbleHeight <= containerRect.width / bubbleWidht) {
+        return containerRect.height / bubbleHeight;
+    };
+    return containerRect.width / bubbleWidht;
+};
+
+for (let i = 0; i < 24; i++) {
+    createBubble(Math.random());
+};
