@@ -118,8 +118,6 @@ function popBubble(bubble, manualPop) {
 
                 bubble.style.width = bubble.naturalWidth;
                 bubble.style.height = bubble.naturalHeight;
-
-                bubble.style.border = "0px solid transparent";
                 
                 gsap.timeline({
                     onComplete: () => {bubble.remove(), createBubble(0)}
