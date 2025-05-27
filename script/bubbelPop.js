@@ -6,7 +6,7 @@ const remainingHeight = window.innerHeight - bubbelPop.getBoundingClientRect().t
 bubbelPop.style.height = `${remainingHeight - 50}px`;
 const containerRect = () => bubbelPop.getBoundingClientRect();
 
-const pictures = ["newCap.jpg"];
+const pictures = ["aah.jpg", "cave.jpg", "ceramicFigurine.jpg", "close.jpeg", "crawl.jpg", "dishes.jpg", "gamer.jpg", "looking.jpeg", "meeting.jpeg", "newCap.jpg", "nuuh.jpeg", "rainy.jpg", "santa.jpg", "skiing.jpg", "sunglasses.jpg", "theforce.jpeg", "thirsty.jpeg", "thumbs.jpeg"];
 
 function createBubble(progress) {
     const bubble = document.createElement('img');
@@ -27,7 +27,7 @@ function createBubble(progress) {
     bubbelPop.appendChild(bubble);
   
     animateBubble(bubble, progress);
-    bubble.addEventListener('click', () => popBubble(bubble, true));
+    bubble.addEventListener('mousedown', () => popBubble(bubble, true));
 };
   
 function animateBubble(bubble, progress) {
@@ -105,34 +105,34 @@ function popBubble(bubble, manualPop) {
     });
 
     function popOrPicture(bubble, manualPop){
-        if (Math.random() > 0.8 && manualPop){
-            bubble.style.borderRadius = 0;
+        if (Math.random() > 0.5 && manualPop){
+            bubble.style.borderRadius = "10px";
             bubble.style.zIndex = 1;
             bubble.src = "/Portfolio/pictures/me/" + pictures[Math.floor(Math.random() * pictures.length)];
 
             bubble.onload = () => {
 
-                gsap.to(bubble, {
-                    top: parseFloat(bubble.style.top) - (parseFloat(bubble.naturalHeight) - parseFloat(bubble.style.height)) / 2,
-                    left: parseFloat(bubble.style.left) - (parseFloat(bubble.naturalWidth) - parseFloat(bubble.style.width)) / 2,
-                    duration: 0
-                })
+                
+                bubble.style.top =  parseFloat(bubble.style.top) - ((parseFloat(bubble.naturalHeight) - parseFloat(bubble.style.height)) / 2);
+                bubble.style.left = parseFloat(bubble.style.left) - ((parseFloat(bubble.naturalWidth) - parseFloat(bubble.style.width)) / 2);
 
                 bubble.style.width = bubble.naturalWidth;
                 bubble.style.height = bubble.naturalHeight;
+
+                bubble.style.border = "1px solid black"
                 
                 gsap.timeline({
                     onComplete: () => {bubble.remove(), createBubble(0)}
                 }).to(bubble, {
                     top: (containerRect().height - parseFloat(bubble.style.height)) / 2,
                     left: (containerRect().width - parseFloat(bubble.style.width)) / 2,
-                    duration: 2,
+                    duration: 1,
                     scale: () => scale(bubble),
                     opacity: 1
                 }).to(bubble, {
-                    duration: 2,
+                    duration: 1,
                     opacity: 0,
-                    delay: 5,
+                    delay: 1,
                     ease: "power3.in"
                 });
             };
