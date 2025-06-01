@@ -13,12 +13,12 @@ function createBubble(progress) {
     bubble.classList.add('bubble');
     bubble.src = "/Portfolio/pictures/bubble.webp";
     
-    const size = 70 + Math.random() * 70;
+    const size = containerRect().width / 20 + Math.random() * (containerRect().width / 20);
   
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
 
-    const startLeft = 30 + Math.random() * (containerRect().width - size - 60);
+    const startLeft = containerRect().width / 40 + Math.random() * (containerRect().width - size - containerRect().width / 20);
     const startTop = containerRect().height;
 
     bubble.style.left = `${startLeft}px`;
@@ -116,8 +116,8 @@ function popBubble(bubble, manualPop) {
                 bubble.style.top =  parseFloat(bubble.style.top) - ((parseFloat(bubble.naturalHeight) - parseFloat(bubble.style.height)) / 2);
                 bubble.style.left = parseFloat(bubble.style.left) - ((parseFloat(bubble.naturalWidth) - parseFloat(bubble.style.width)) / 2);
 
-                bubble.style.width = bubble.naturalWidth;
-                bubble.style.height = bubble.naturalHeight;
+                bubble.style.width = bubble.naturalWidth + "px";
+                bubble.style.height = bubble.naturalHeight + "px";
                 
                 gsap.timeline({
                     onComplete: () => {bubble.remove(), createBubble(0)}
