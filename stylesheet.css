@@ -21,16 +21,14 @@ main {
 #welcome {
     text-align: center;
     font-weight: 600;
-    font-size: 8rem;
-    padding-top: 2rem;
-    border-top: solid rgb(233, 205, 255);
+    font-size: 5rem;
     color: aliceblue;
     font-family: "Josefin Sans", sans-serif;
     font-style: normal;
     font-optical-sizing: auto;
     margin: 0;
-    margin-top: 80;
-    margin-bottom: 30;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 
 #bubbelPop {
