@@ -16,9 +16,10 @@ footer li {
     display: inline-block;
 }
 
-body {
+.footer {
     text-align: center;
     width: 80%;
+    margin: 0 auto;
     height: auto;
     padding: 1rem 2rem;
     display: flex;
@@ -28,8 +29,8 @@ body {
 
 footer * {
     outline: 1px solid red;
-  }
-  
-  html, body {
-    overflow-x: hidden;
-  }
+}
+
+html, body {
+    overflow: hidden;
+}
