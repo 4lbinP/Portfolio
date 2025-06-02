@@ -1,0 +1,11 @@
+ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+img {
+    width: 2rem;
+    height: auto;
+}
+
