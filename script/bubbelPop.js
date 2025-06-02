@@ -1,9 +1,19 @@
 import { gsap } from "https://esm.sh/gsap@3.13.0";
 
 const bubbelPop = document.getElementById("bubbelPop");
-const remainingHeight = window.innerHeight - bubbelPop.getBoundingClientRect().top;
 
-bubbelPop.style.height = `${remainingHeight - 50}px`;
+function bubblePopSize() {
+    const remainingHeight = window.innerHeight - bubbelPop.getBoundingClientRect().top;
+    bubbelPop.style.height = `${remainingHeight - 40}px`;
+}
+
+window.addEventListener("load", () => {
+    bubblePopSize();
+    loadBubbles();
+});
+  
+window.addEventListener("resize", bubblePopSize)
+
 const containerRect = () => bubbelPop.getBoundingClientRect();
 
 const pictures = ["aah.jpg", "cave.jpg", "ceramicFigurine.jpg", "close.jpeg", "crawl.jpg", "dishes.jpg", "gamer.jpg", "looking.jpeg", "meeting.jpeg", "newCap.jpg", "nuuh.jpeg", "rainy.jpg", "santa.jpg", "skiing.jpg", "sunglasses.jpg", "theforce.jpeg", "thirsty.jpeg", "thumbs.jpeg"];
@@ -112,9 +122,8 @@ function popBubble(bubble, manualPop) {
 
             bubble.onload = () => {
 
-                
-                bubble.style.top =  parseFloat(bubble.style.top) - ((parseFloat(bubble.naturalHeight) - parseFloat(bubble.style.height)) / 2);
-                bubble.style.left = parseFloat(bubble.style.left) - ((parseFloat(bubble.naturalWidth) - parseFloat(bubble.style.width)) / 2);
+                bubble.style.top =  parseFloat(bubble.style.top) - ((parseFloat(bubble.naturalHeight) - parseFloat(bubble.style.height)) / 2) + "px";
+                bubble.style.left = parseFloat(bubble.style.left) - ((parseFloat(bubble.naturalWidth) - parseFloat(bubble.style.width)) / 2) + "px";
 
                 bubble.style.width = bubble.naturalWidth + "px";
                 bubble.style.height = bubble.naturalHeight + "px";
@@ -150,6 +159,8 @@ function scale(bubble) {
     return containerRect().width / bubbleWidht;
 };
 
-for (let i = 0; i < 24; i++) {
-    createBubble(Math.random());
-};
+function loadBubbles(){
+    for (let i = 0; i < 24; i++) {
+        createBubble(Math.random());
+    };
+}
