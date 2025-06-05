@@ -54,6 +54,7 @@ main {
 #about {
     font-family: "Josefin sans", sans-serif;
     color: aliceblue;
+    line-height: 1.1;
 }
 
 #about h1 {
@@ -65,4 +66,20 @@ main {
     margin: 0;
     margin-top: 0rem;
     margin-bottom: 1rem;
+}
+
+#about .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    padding: 0.5rem;
+}
+
+#about .grid-item {
+    background-color: rgb(0, 0, 0, 0.1);
+    color: white;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    overflow: hidden;
 }
