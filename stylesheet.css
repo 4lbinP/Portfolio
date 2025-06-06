@@ -83,3 +83,118 @@ main {
     border-radius: 8px;
     overflow: hidden;
 }
+
+#work {
+    font-family: "Josefin sans", sans-serif;
+    color: aliceblue;
+    line-height: 1.1;
+}
+
+#work h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 5rem;
+    font-style: normal;
+    font-optical-sizing: auto;
+    margin: 0;
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+}
+
+#projects h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+#projects p {
+    text-align: center;
+    font-style: italic;
+    line-height: 1.1;
+}
+
+.project-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    justify-items: center;
+    width: 100%;
+    padding: 0.3rem;
+    box-sizing: border-box;
+}
+
+.card {
+  width: 100%;
+  min-width: 260px;
+  max-width: 400px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card a {
+    word-break: break-all;
+}
+
+#tools {
+    
+}
+
+#tools h2 {
+    text-align: center;
+    margin: 10px;
+    font-size: 2.5rem;
+}
+
+.outer-box {
+    width: 70px;
+    height: 70px;
+    background-color: rgb(240, 248, 255, 0.3);
+    border: 2px solid rgb(121, 121, 121);
+    border-radius: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-box {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    text-align: center;
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#tools-box {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.box img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
